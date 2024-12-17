@@ -5,11 +5,8 @@ A React-based web application that demonstrates various image processing techniq
 
 # preview 
 
-<video autoplay loop muted playsinline>
-  <source src="resources/Screencast from 2024-12-17 15-56-28.webm" type="video/webm">
-</video>
-
-
+![app preview](resources/Screencast from 2024-12-17 15-56-28.webm)
+  
 ## Features
 - Noise Addition:
   - Gaussian Noise with configurable sigma parameter
