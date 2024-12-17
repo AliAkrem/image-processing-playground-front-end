@@ -3,10 +3,9 @@
 A React-based web application that demonstrates various image processing techniques and filters. This interactive tool allows users to upload images and apply different image processing operations.
 
 
-# preview 
+![output](https://github.com/user-attachments/assets/a06a4b46-f71a-4725-9365-b31e2755d6f7)
 
-![app preview](resources/Screencast from 2024-12-17 15-56-28.webm)
-  
+
 ## Features
 - Noise Addition:
   - Gaussian Noise with configurable sigma parameter
