@@ -39,10 +39,6 @@ The application provides various parameters that can be adjusted:
 
 ## Getting Started
 
-### Prerequisites
-- Node.js (version 14 or higher)
-- npm or yarn package manager
-
 ### Installation
 
 1. Clone the repository:
