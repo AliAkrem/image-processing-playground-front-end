@@ -8,7 +8,14 @@ A React-based web application that demonstrates various image processing techniq
   - Salt & Pepper Noise
 - Enhancement Filters:
   - Dynamics reframing (v1)
+
+  <img src="resources/Screenshot from 2024-12-17 13-42-53.png" /> 
+
   - Contrast enhancement (v2)
+  
+  <img src="resources/Screenshot from 2024-12-17 13-43-19.png"   />
+  <img src="resources/Screenshot from 2024-12-17 13-43-36.png"   />
+
 - Spatial Filters:
   - Gaussian Filter with adjustable filter size
   - Average Filter

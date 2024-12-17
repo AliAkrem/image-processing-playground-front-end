@@ -68,8 +68,8 @@ export default function App() {
           <Title order={3}>Settings</Title>
 
           <SimpleGrid cols={2} mt={'md'} >
-            <Button onClick={applyGaussianNoise}>Add Gaussian Noise</Button>
-            <Button onClick={applySaltAndPepperNoise}>Add Salt & Pepper Noise</Button>
+            <Button onClick={applyGaussianNoise}>Gaussian Noise</Button>
+            <Button onClick={applySaltAndPepperNoise}>Salt & Pepper</Button>
             <Button onClick={enhance_v1} >enhance v1</Button>
             <Button onClick={enhance_v2} >enhance v2</Button>
             <Button onClick={gaussianFilter} > gaussian Filter</Button>
