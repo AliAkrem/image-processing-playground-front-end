@@ -23,7 +23,6 @@ export function usePrewittEdgeDetection() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

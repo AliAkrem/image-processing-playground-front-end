@@ -23,7 +23,6 @@ export function useMaxFilter() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

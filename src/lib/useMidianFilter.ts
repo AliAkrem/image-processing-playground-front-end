@@ -23,7 +23,6 @@ export function useMidianFilter() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: Infinity,
         }
       );
 

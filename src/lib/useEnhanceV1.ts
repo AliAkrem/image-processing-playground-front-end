@@ -33,7 +33,6 @@ export function useEnhanceV1() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

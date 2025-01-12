@@ -23,7 +23,6 @@ export function useNagaoFilter() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

@@ -33,7 +33,6 @@ export function useGaussianFilter() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

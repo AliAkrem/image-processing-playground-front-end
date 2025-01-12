@@ -25,7 +25,6 @@ export function useSaltPepperNoise() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

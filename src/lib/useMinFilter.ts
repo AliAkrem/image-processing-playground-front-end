@@ -23,7 +23,6 @@ export function useMinFilter() {
             Accept: "*/*",
           },
           maxBodyLength: Infinity,
-          timeout: 30000,
         }
       );
 

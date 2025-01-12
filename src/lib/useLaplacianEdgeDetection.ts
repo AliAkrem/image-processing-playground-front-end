@@ -8,15 +8,18 @@ interface Response {
   processed_image: string;
 }
 
-export function useAverageFilter() {
+export function useLaplacianEdgeDetection() {
   return useMutation({
-    mutationFn: async ({ image }: { image: FileWithPath }): Promise<File> => {
+
+    mutationFn: async ({ image, s }: { image: FileWithPath, s : number }): Promise<File> => {
       const formData = new FormData();
       formData.append("image", image);
+      formData.append("s", s);
+
       const host = import.meta.env.VITE_HOST;
 
       const response = await axios.post<Response>(
-        `${host}/api/average_filter`,
+        `${host}/api/laplacian_edge_detection`,
         formData,
         {
           headers: {
@@ -32,7 +35,7 @@ export function useAverageFilter() {
 
       return base64ToImageFile(
         response.data.processed_image,
-        `average_filter.png`
+        `laplacian_edge_detection__s=${s}.png`
       );
     },
     onError: (error) => {

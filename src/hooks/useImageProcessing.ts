@@ -13,15 +13,15 @@ import { useMidianFilter } from "../lib/useMidianFilter";
 import { useMinFilter } from "../lib/useMinFilter";
 import { useNagaoFilter } from "../lib/useNagaoFilter";
 import { usePrewittEdgeDetection } from "../lib/usePrewittEdgeDetection";
+import { useLaplacianEdgeDetection } from "../lib/useLaplacianEdgeDetection";
+import {  useDebouncedValue } from "@mantine/hooks";
 
 export function useImageProcessing() {
-
   const {
     mutateAsync: addGaussianNoiseMutateAsync,
     isPending: addGaussianNoisePending,
     isSuccess: addGaussianNoiseSuccess,
   } = useGaussianNoise();
-
 
   const {
     mutateAsync: addSaltPepperNoiseMutateAsync,
@@ -83,11 +83,20 @@ export function useImageProcessing() {
     isSuccess: prewittEdgeDetectionSuccess,
   } = usePrewittEdgeDetection();
 
+  const {
+    mutateAsync: laplacianEdgeDetectionMutateAsync,
+    isPending: laplacianEdgeDetectionPending,
+    isSuccess: laplacianEdgeDetectionSuccess,
+  } = useLaplacianEdgeDetection();
+
   //
   const [noiseAmount, setNoiseAmount] = useState(0.5);
   const [filterStrength, setFilterStrength] = useState(3);
   const [a, setA] = useState(100);
   const [b, setB] = useState(40);
+
+  const [s, setS] = useState(20);
+  const [debouncedS] = useDebouncedValue(s, 300);
 
   const [sigma, setSigma] = useState((0.8).toFixed(1));
   const [filterSize, setFilterSize] = useState(3);
@@ -105,7 +114,8 @@ export function useImageProcessing() {
       averageFilterPending ||
       midianFilterPending ||
       nagaoFilterPending ||
-      prewittEdgeDetectionPending;
+      prewittEdgeDetectionPending ||
+      laplacianEdgeDetectionPending;
 
     const success =
       addGaussianNoiseSuccess ||
@@ -118,7 +128,8 @@ export function useImageProcessing() {
       midianFilterSuccess ||
       gaussianFilterSuccess ||
       nagaoFilterSuccess ||
-      prewittEdgeDetectionSuccess;
+      prewittEdgeDetectionSuccess ||
+      laplacianEdgeDetectionSuccess;
     if (pending) nprogress.start();
     else if (success) {
       nprogress.complete();
@@ -142,8 +153,16 @@ export function useImageProcessing() {
     prewittEdgeDetectionPending,
   ]);
 
+  useEffect(() => {
 
-  
+    console.log('useEffect hit')
+
+    laplacianEdgeDetection();
+
+  }, [debouncedS]);
+
+
+
   const onDrop = (acceptedFiles: FileWithPath[]) => {
     setFiles(acceptedFiles);
   };
@@ -233,7 +252,13 @@ export function useImageProcessing() {
     const output = await midianFilterMutateAsync({
       image: targetImage[0],
     });
-
+       {/* <NumberInput
+              label="souaillage"
+              min={0}
+              allowNegative={false}
+              value={filterSize}
+              onChange={(newValue) => setFilterSize(Number(newValue))}
+            /> */}
     setFiles(() => [...targetImage, output as FileWithPath]);
   };
 
@@ -255,6 +280,17 @@ export function useImageProcessing() {
     setFiles(() => [...targetImage, output as FileWithPath]);
   };
 
+  const laplacianEdgeDetection = async () => {
+    if (targetImage.length == 0) return;
+
+    const output = await laplacianEdgeDetectionMutateAsync({
+      image: targetImage[0],
+      s: debouncedS,
+    });
+
+    setFiles(() => [...targetImage, output as FileWithPath]);
+  };
+
   return {
     targetImage,
     noiseAmount,
@@ -271,8 +307,10 @@ export function useImageProcessing() {
     enhance_v2,
     setA,
     setB,
+    setS,
     a,
     b,
+    s,
     sigma,
     filterSize,
     setSigma,
@@ -284,5 +322,6 @@ export function useImageProcessing() {
     midianFilter,
     nagaoFilter,
     prewittEdgeDetection,
+    laplacianEdgeDetection,
   };
 }
